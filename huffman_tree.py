@@ -9,7 +9,7 @@ class Node:
         self.right = None
 
     def __lt__(self, node):
-        return self.probability > node.probability
+        return self.probability < node.probability
 
     def __eq__(self, node):
         if(node == None):
