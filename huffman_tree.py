@@ -38,3 +38,6 @@ class HuffmanTree:
             both_node.right = second_huffman_node
             heapq.heappush(self.heap, both_node)
         return self.heap
+
+    def get_root(self):
+        return heapq.heappop(self.heap)

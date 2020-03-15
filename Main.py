@@ -24,7 +24,7 @@ probability = {
 tree = HuffmanTree()
 tree.get_nodes_heap(probability)
 tree.construct_tree()
-firstNode = tree.heap[0]
+firstNode = tree.get_root()
 recurse(firstNode)
 print(probability)
 print(encodingArray)
