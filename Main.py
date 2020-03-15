@@ -1,30 +1,23 @@
 from ReadInput import Input as I
 from huffman_tree import HuffmanTree
-encodingArray = {}
 
 
-def recurse(Node, code=''):
-    if Node == None:
-        return
-    if Node.symbol != None:
-        encodingArray[Node.symbol] = code
-        return
-    recurse(Node.left, code+'0')
-    recurse(Node.right, code+'1')
+def constructProbability(fileName):
+    text = open(fileName, "r").read()
+    freq = {}
+    for char in text:
+        if char not in freq:
+            freq[char] = 1
+        else:
+            freq[char] = freq[char] + 1
+    return freq
 
 
 Input = I()
-probability = {
-    'A': 5,
-    'f': 1,
-    'd': 3,
-    ' ': 9,
-    'a': 56
-}  # Input.constructProbability('input.txt')
+probability = constructProbability("input.txt")
 tree = HuffmanTree()
 tree.get_nodes_heap(probability)
 tree.construct_tree()
-firstNode = tree.get_root()
-recurse(firstNode)
+code = tree.get_codes()
 print(probability)
-print(encodingArray)
+print(code)
