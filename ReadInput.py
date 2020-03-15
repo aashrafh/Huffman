@@ -5,6 +5,7 @@ class Input:
         
     def getString(self):
         chars = []
+        
         for string in self.file:
             for char in string:
                 chars.append(char)
@@ -13,8 +14,7 @@ class Input:
     def constructProbability(self):
         #used to count occurancies of an element in a list
         freq = collections.Counter(self.getString())
-
-        #calculating the probability array
+        chars = {}
         for char in freq:
-            freq[char] = freq[char]/len(freq)
-        return freq
+            chars.update({char:freq[char]})
+        return chars

@@ -5,8 +5,9 @@ def recurse (Node,code = ''):
     if Node.symbol != None:
         encodingArray[Node.symbol] = code
         return
-    recurse(Node.left,code+'0')
-    recurse(Node.right,code+'1')
+    recurse(Node.right,code + '1')
+    recurse(Node.left,code + '0')
+    
     
     
 Input = I('input.txt')
@@ -18,8 +19,13 @@ tree.get_nodes_heap(probability)
 tree.construct_tree()
 firstNode = tree.heap[0]
 inputString = Input2.getString()
-recurse(firstNode)
+if len(probability) == 1:
+    recurse(firstNode,'0')
+else:
+     recurse(firstNode)
 outputString = ''
+
+print(encodingArray)
 
 for char in inputString:
     outputString += encodingArray[char]
