@@ -1,21 +1,20 @@
 import collections
 class Input:
-    def constructProbability(self,fileName):
-        file = open (fileName)
-        numberOfChars = 0
-        freq = []
-        for string in file:
+    def __init__(self,fileName):
+        self.file = open(fileName)
+        
+    def getString(self):
+        chars = []
+        for string in self.file:
             for char in string:
-                numberOfChars += 1
-                freq.append(char)
-
+                chars.append(char)
+        return chars
+    
+    def constructProbability(self):
         #used to count occurancies of an element in a list
-        freq = collections.Counter(freq)
+        freq = collections.Counter(self.getString())
 
         #calculating the probability array
         for char in freq:
-            freq[char] = freq[char]/numberOfChars
+            freq[char] = freq[char]/len(freq)
         return freq
-
-
-#freq is the probability array

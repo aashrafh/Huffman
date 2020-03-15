@@ -1,5 +1,6 @@
 from ReadInput import Input as I
 from huffman_tree import HuffmanTree 
+
 def recurse (Node,code = ''):
     if Node.symbol != None:
         encodingArray[Node.symbol] = code
@@ -8,13 +9,21 @@ def recurse (Node,code = ''):
     recurse(Node.right,code+'1')
     
     
-Input = I()
-probability = Input.constructProbability('input.txt')
+Input = I('input.txt')
+Input2 = I('input.txt')
+probability = Input.constructProbability()
+encodingArray = probability.copy()
 tree = HuffmanTree()
 tree.get_nodes_heap(probability)
 tree.construct_tree()
 firstNode = tree.heap[0]
-encodingArray = probability.copy()
+inputString = Input2.getString()
 recurse(firstNode)
-print(probability)
-print(encodingArray)
+outputString = ''
+
+for char in inputString:
+    outputString += encodingArray[char]
+
+ouput = open ('output.txt','w+')
+ouput.write(outputString)
+ouput.close()
