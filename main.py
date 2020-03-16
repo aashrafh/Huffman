@@ -1,23 +1,25 @@
 from huffman_tree import HuffmanTree
 
-
 def construct_probability(input_string):
     freq = {}
     for char in input_string:
         if char not in freq:
             freq[char] = 1
         else:
-            freq[char] = freq[char]+1
-
+            freq[char] += 1
     return freq
 
 
 input_string = open("input.txt", "r").read()
 probability = construct_probability(input_string)
-tree = HuffmanTree()
-tree.get_nodes_heap(probability)
-tree.construct_tree()
-encoding_array = tree.get_codes()
+encoding_array = {}
+if len(probability) == 1:
+    encoding_array.update({list(probability)[0]:'0'})
+else:
+    tree = HuffmanTree()
+    tree.get_nodes_heap(probability)
+    tree.construct_tree()
+    encoding_array = tree.get_codes()
 
 # Encode
 output_string = ""

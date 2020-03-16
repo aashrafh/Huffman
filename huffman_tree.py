@@ -33,10 +33,6 @@ class HuffmanTree:
         while(len(self.heap) > 1):
             first_huffman_node = heapq.heappop(self.heap)
             second_huffman_node = heapq.heappop(self.heap)
-            # print(first_huffman_node.probability)
-            # print("\n")
-            # print(second_huffman_node.probability)
-            # print("\n")
             both_node = Node(None, first_huffman_node.probability +
                              second_huffman_node.probability)
             both_node.left = first_huffman_node
@@ -45,8 +41,6 @@ class HuffmanTree:
         return self.heap
 
     def recurse(self, node, code=''):
-        if node == None:
-            return
         if node.symbol != None:
             self.encoding_array[node.symbol] = code
             return
