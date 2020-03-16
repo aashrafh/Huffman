@@ -27,6 +27,7 @@ ouput = open('binary_output.bin', 'w')
 ouput.write(output_string)
 ouput.close()
 
+
 # Decode
 decoded_output = ""
 temp_str = ""
@@ -41,6 +42,6 @@ while char:
     char = encoded_file.read(1)
 
 print(decoded_output)
-decoded_output_file = open('decoded_output.txt', 'w')
+decoded_output_file = open('decoded_output.txt', 'w+')
 decoded_output_file.write(decoded_output)
 decoded_output_file.close()
