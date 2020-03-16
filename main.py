@@ -28,19 +28,17 @@ ouput.write(output_string)
 ouput.close()
 
 # Decode
-decoded_output = ""
-temp_str = ""
-encoded_file = open("binary_output.bin", "rb")
-char = encoded_file.read(1)
-while char:
-    temp_str = temp_str + str(char)
-    if temp_str in encoding_array:
-        print("temp_str")
-        decoded_output = decoded_output + encoding_array[temp_str]
-        temp_str = ""
-    char = encoded_file.read(1)
-
-print(decoded_output)
-decoded_output_file = open('decoded_output.txt', 'w')
-decoded_output_file.write(decoded_output)
-decoded_output_file.close()
+decoder = {}
+for key in encoding_array:
+    decoder[encoding_array[key]] = key
+encoded_input = open('binary_output.bin', 'r').read()
+t = ""
+decoded_text = ""
+for i in range(len(encoded_input)):
+    t += str(encoded_input[i])
+    if t in decoder:
+        decoded_text += decoder[t]
+        t = ""
+decoded_file = open('decoded_output.out', 'w')
+decoded_file.write(decoded_text)
+decoded_file.close()
